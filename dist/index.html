@@ -29,7 +29,7 @@
     const shadowRoot2 = section2.attachShadow({mode: 'closed'});
     const shadowRoot3 = section3.attachShadow({mode: 'closed'});
 
-    function createFeedItem1(content, isSponsored) {
+    function createFeedItem1(content) {
         const feedItem = document.createElement('div');
         feedItem.classList.add('feed-item');
 
@@ -41,7 +41,7 @@
         shadowRoot1.appendChild(feedItem);
     }
 
-    function createFeedItem2(content, isSponsored) {
+    function createFeedItem2(content) {
         const feedItem = document.createElement('div');
         feedItem.classList.add('feed-item');
 
@@ -55,7 +55,7 @@
         shadowRoot2.appendChild(feedItem);
     }
 
-    function createFeedItem3(content, isSponsored) {
+    function createFeedItem3(content) {
         const feedItem = document.createElement('div');
         feedItem.classList.add('feed-item');        
         feedItem.textContent = content;
@@ -68,22 +68,22 @@
         parent.appendChild(header);
     }
     createHeader(shadowRoot1, "Shadow root wrapping feed items");
-    createFeedItem1('Not Sponsored', false);
-    createFeedItem1('Not Sponsored', false);
-    createFeedItem1('Not Sponsored', false);
-    createFeedItem1('Sponsored', true);
+    createFeedItem1('Not Sponsored');
+    createFeedItem1('Not Sponsored');
+    createFeedItem1('Not Sponsored');
+    createFeedItem1('Sponsored');
 
     createHeader(shadowRoot2, "Nested shadow roots");
-    createFeedItem2('Not Sponsored', false);
-    createFeedItem2('Not Sponsored', false);
-    createFeedItem2('Sponsored', true);
-    createFeedItem2('Not Sponsored', false);
+    createFeedItem2('Not Sponsored');
+    createFeedItem2('Not Sponsored');
+    createFeedItem2('Sponsored');
+    createFeedItem2('Not Sponsored');
 
     createHeader(shadowRoot3, "selector and searchSelector are the same");
-    createFeedItem3('Not Sponsored', false);
-    createFeedItem3('Sponsored', true);
-    createFeedItem3('Not Sponsored', false);
-    createFeedItem3('Not Sponsored', false);
+    createFeedItem3('Not Sponsored');
+    createFeedItem3('Sponsored');
+    createFeedItem3('Not Sponsored');
+    createFeedItem3('Not Sponsored');
 
 </script>
 
