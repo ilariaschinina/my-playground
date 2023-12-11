@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Shadow DOM Example</title>
+    <style >
+        /* Style for the section element */
+        section {
+            margin: 1em 1em 2em 1em;
+        }
+    </style>
+</head>
+<body>
+
+<section id="section1"></section>
+<section id="section2"></section>
+<section id="section3"></section>
+
+<script>
+
+    const section1 = document.getElementById('section1');
+    const section2 = document.getElementById('section2');
+    const section3 = document.getElementById('section3');
+    
+    const feedItems = document.querySelectorAll('#section2 .feed-item');
+    
+    const shadowRoot1 = section1.attachShadow({mode: 'closed'});
+    const shadowRoot2 = section2.attachShadow({mode: 'closed'});
+    const shadowRoot3 = section3.attachShadow({mode: 'closed'});
+
+    function createFeedItem1(content, isSponsored) {
+        const feedItem = document.createElement('div');
+        feedItem.classList.add('feed-item');
+
+        const childSelector = document.createElement('div');
+        childSelector.classList.add('childSelector');
+        childSelector.textContent = content;
+        feedItem.appendChild(childSelector);
+        
+        shadowRoot1.appendChild(feedItem);
+    }
+
+    function createFeedItem2(content, isSponsored) {
+        const feedItem = document.createElement('div');
+        feedItem.classList.add('feed-item');
+
+        const childSelector = document.createElement('div');
+        childSelector.classList.add('childSelector');
+        childSelector.textContent = content;
+        
+        const feedItemParent = feedItem.attachShadow({mode: 'closed'});
+
+        feedItemParent.appendChild(childSelector);
+        shadowRoot2.appendChild(feedItem);
+    }
+
+    function createFeedItem3(content, isSponsored) {
+        const feedItem = document.createElement('div');
+        feedItem.classList.add('feed-item');        
+        feedItem.textContent = content;
+        shadowRoot3.appendChild(feedItem);
+    }
+
+    function createHeader(parent, content) {
+        const header = document.createElement('h2');
+        header.textContent = content;
+        parent.appendChild(header);
+    }
+    createHeader(shadowRoot1, "Shadow root wrapping feed items");
+    createFeedItem1('Not Sponsored', false);
+    createFeedItem1('Not Sponsored', false);
+    createFeedItem1('Not Sponsored', false);
+    createFeedItem1('Sponsored', true);
+
+    createHeader(shadowRoot2, "Nested shadow roots");
+    createFeedItem2('Not Sponsored', false);
+    createFeedItem2('Not Sponsored', false);
+    createFeedItem2('Sponsored', true);
+    createFeedItem2('Not Sponsored', false);
+
+    createHeader(shadowRoot3, "selector and searchSelector are the same");
+    createFeedItem3('Not Sponsored', false);
+    createFeedItem3('Sponsored', true);
+    createFeedItem3('Not Sponsored', false);
+    createFeedItem3('Not Sponsored', false);
+
+</script>
+
+</body>
+</html>
