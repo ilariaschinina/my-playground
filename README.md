@@ -6,4 +6,4 @@ Just a space where to experiment.
 2. run `npm install`
 3. run `npx webpack --config webpack.config.js`
 4. run `python3 -m http.server 9000`
-5. go to http://localhost:9000/dist/ on Chrome
+5. go to http://localhost:9000/dist/
