@@ -12,16 +12,28 @@
     </style>
 </head>
 <body>
-
+<svg style="display: none;"><text id="SvgT11" y="18" style="fill: currentcolor; font-size: 16px; overflow: visible;">Sponsored</text></svg>
+<svg style="display: none;"><use id="SvgT1" href="#SvgT11"></use></svg>
 <section id="section1"></section>
 <section id="section2"></section>
 <section id="section3"></section>
+<section id="section4">
+    <h2>Nested svg-use pattern</h2>
+    <div>Not Sponsored</div>
+    <div>
+        <svg height="18">
+            <use href="#SvgT1"></use>
+        </svg>
+    </div>
+    <div>Not Sponsored</div>
+    <div>Not Sponsored</div>
+</section>
 
 <script>
-
     const section1 = document.getElementById('section1');
     const section2 = document.getElementById('section2');
     const section3 = document.getElementById('section3');
+    const section4 = document.getElementById('section4');
     
     const feedItems = document.querySelectorAll('#section2 .feed-item');
     
@@ -84,8 +96,15 @@
     createFeedItem3('Sponsored');
     createFeedItem3('Not Sponsored');
     createFeedItem3('Not Sponsored');
-
 </script>
 
 </body>
 </html>
+
+<!-- 
+
+localhost#$#debug; hide-if-contains /^Sponsored/ '#section3^sh div.feed-item'
+localhost#$#debug; hide-if-contains /^Sponsored/ '#section2^sh div.feed-item' '#section2^sh div ^sh .childSelector'
+localhost#$#debug; hide-if-contains /^Sponsored/ '#section1^sh div.feed-item' '#section1^sh div .childSelector'
+
+-->
